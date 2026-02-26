@@ -7,8 +7,8 @@
 class ChessEngine{
 private:
     Board board;
-    std::vector<std::unique_ptr<Piece>> Black_Pieces;
-    std::vector<std::unique_ptr<Piece>> White_Pieces;
+    std::vector<Piece> Black_Pieces;
+    std::vector<Piece> White_Pieces;
 public:
     ChessEngine();
 };

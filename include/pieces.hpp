@@ -2,45 +2,39 @@
 #include<vector>
 
 struct Position{
-    uint8_t pos;
-}; 
+    uint8_t x;
+    uint8_t y;
 
-std::vector<std::pair<uint8_t,uint8_t>> convert 
+    Position(int x,int y);
+}; 
+bool operator==(const Position& a,const Position& b);
+
+enum class Type{
+    Pawn,
+    Rook,
+    Knight,
+    Bishop,
+    Queen,
+    King
+};
+
+enum class PieceColor{
+    Black,
+    White
+};
 
 class Piece{
-protected:
+private:
+    const Type ID;
     Position pos;
 
     bool has_moved=false;
     bool captured = false;
 public:
+    
+    Piece(Type id,Position pos);
+
     const Position getPos() const;
-    bool goTo(Position new_pos);
-    virtual const std::vector<Position> getPossibleMoves() const;
+    bool goTo(Position new_pos,std::vector<Position> valid_pos);
+    void get_captured();
 };
-
-
-class Pawn:public Piece{
-
-};
-
-class Rook:public Piece{
-
-};
-
-class Knight:public Piece{
-
-};
-
-class Bishop:public Piece{
-
-};
-
-class Queen:public Piece{
-
-};
-
-class King:public Piece{
-
-};
-
