@@ -10,22 +10,21 @@ bool operator==(const Position& a,const Position& b){
     return ((a.x==b.x) && (a.y == b.y));
 }
 
-Piece::Piece(Type id, Position pos):ID(id),pos(pos){
-
-}
+Piece::Piece(PieceType id,Position pos, PieceColor clr):ID(id),pos(pos),clr(clr){}
 
 const Position Piece::getPos() const{
     return pos;
 }
-bool Piece::goTo(Position new_pos, std::vector<Position> valid_pos){
+const PieceColor Piece::getColor() const{
+    return clr;
+}
+const PieceType Piece::getType() const{
+    return ID;
+}
+void Piece::goTo(Position new_pos){
     has_moved = true;
-    for(auto x : valid_pos){
-        if(x == new_pos){
-            pos = new_pos;
-            return true;
-        }
-    }
-    return false;
+    pos = new_pos;
+
 }
 
 void Piece::get_captured(){

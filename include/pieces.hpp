@@ -1,5 +1,9 @@
+#pragma once
+
 #include <cstdint>
 #include<vector>
+
+class Board;
 
 struct Position{
     uint8_t x;
@@ -9,7 +13,7 @@ struct Position{
 }; 
 bool operator==(const Position& a,const Position& b);
 
-enum class Type{
+enum class PieceType{
     Pawn,
     Rook,
     Knight,
@@ -25,16 +29,22 @@ enum class PieceColor{
 
 class Piece{
 private:
-    const Type ID;
+    friend Board;
+
+    const PieceType ID;
+    const PieceColor clr;
     Position pos;
 
     bool has_moved=false;
     bool captured = false;
 public:
     
-    Piece(Type id,Position pos);
+    Piece(PieceType id,Position pos, PieceColor clr);
 
     const Position getPos() const;
-    bool goTo(Position new_pos,std::vector<Position> valid_pos);
+    void goTo(Position new_pos);
+    const PieceColor getColor() const;
+    const PieceType getType() const;
+
     void get_captured();
 };

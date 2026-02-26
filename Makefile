@@ -2,7 +2,7 @@ TARGET_EXEC := game
 
 BUILD_DIR := build
 SRC_DIR := src
-INC_DIR := src 
+INC_DIR := include
 
 SRCS := $(shell find $(SRC_DIR) -name '*.cpp')
 OBJS := $(SRCS:$(SRC_DIR)/%.cpp=$(BUILD_DIR)/%.o)
